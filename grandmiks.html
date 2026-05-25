@@ -66,8 +66,10 @@
     .adv-card .check { background: var(--red); color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; }
     .adv-card p { font-weight: 600; font-size: 0.92rem; }
 
-    .partners-grid { display: flex; gap: 12px; flex-wrap: wrap; }
-    .partner-tag { background: white; border: 2px solid var(--red); color: var(--red); border-radius: 8px; padding: 10px 18px; font-weight: 700; font-size: 0.92rem; }
+    .partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+    .partner-card { background: white; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s; }
+    .partner-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+    .partner-card img { max-width: 100%; max-height: 60px; object-fit: contain; }
 
     .countries-row { display: flex; flex-wrap: wrap; gap: 10px; }
     .country { background: white; border-radius: 20px; padding: 8px 16px; font-size: 0.88rem; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
@@ -180,16 +182,16 @@
 <section>
   <h2>Партнёры</h2>
   <div class="partners-grid">
-    <div class="partner-tag">Blum</div>
-    <div class="partner-tag">Häfele</div>
-    <div class="partner-tag">Lamarty</div>
-    <div class="partner-tag">Freestyle</div>
-    <div class="partner-tag">Гомельдрев</div>
-    <div class="partner-tag">Emax</div>
-    <div class="partner-tag">Кедр</div>
-    <div class="partner-tag">Союз</div>
-    <div class="partner-tag">Томлесдрев</div>
-    <div class="partner-tag">ХБТ</div>
+    <div class="partner-card"><img src="https://static.tildacdn.pro/tild6537-6664-4139-b565-663633656366/photo.png" alt="Blum" /></div>
+    <div class="partner-card"><img src="https://static.tildacdn.pro/tild3231-6536-4163-b139-313337313030/photo.png" alt="Гомельдрев" /></div>
+    <div class="partner-card"><img src="https://static.tildacdn.pro/tild3065-6134-4933-a661-366538303832/photo.png" alt="Emax" /></div>
+    <div class="partner-card"><img src="https://static.tildacdn.pro/tild3737-6138-4461-b364-623937336561/photo.png" alt="Кедр" /></div>
+    <div class="partner-card"><img src="https://static.tildacdn.pro/tild3262-3535-4138-a639-656536356165/photo.png" alt="Lamarty" /></div>
+    <div class="partner-card"><img src="https://static.tildacdn.pro/tild6238-6635-4531-b035-633663393035/photo.png" alt="Союз" /></div>
+    <div class="partner-card"><img src="https://static.tildacdn.pro/tild3766-6364-4530-a364-633262646636/photo.png" alt="Томлесдрев" /></div>
+    <div class="partner-card"><img src="https://static.tildacdn.pro/tild3939-3763-4537-a437-323862346437/photo.png" alt="Freestyle" /></div>
+    <div class="partner-card"><img src="https://static.tildacdn.pro/tild3836-6661-4438-b762-633531643733/photo.png" alt="Häfele" /></div>
+    <div class="partner-card"><img src="https://static.tildacdn.pro/tild3336-6264-4833-a334-326337653433/photo.png" alt="ХБТ" /></div>
   </div>
 </section>
 
