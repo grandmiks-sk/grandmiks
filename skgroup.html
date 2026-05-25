@@ -3,22 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SK Group</title>
+  <title>SK Group — Авторитет в каждом моменте</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f9f9f9; color: #1a1a1a; line-height: 1.6; }
+    :root { --dark: #1a1a1a; --gray: #555; --bg: #f9f9f9; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
 
     .back-btn {
       position: fixed;
       top: 16px; left: 16px;
       background: #1a1a1a;
       color: white;
-      border: none;
       border-radius: 50px;
       padding: 10px 20px;
       font-size: 0.9rem;
       font-weight: 600;
-      cursor: pointer;
       text-decoration: none;
       z-index: 100;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -32,20 +31,45 @@
     }
     .hero img { height: 110px; width: 110px; object-fit: contain; border-radius: 12px; background: white; padding: 12px; margin-bottom: 24px; }
     .hero h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: 2px; color: white; text-transform: uppercase; }
-    .hero p { margin-top: 10px; font-size: 1rem; color: #aaa; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .hero .slogan { margin-top: 10px; font-size: 1rem; color: #aaa; font-style: italic; }
+    .hero-badges { display: flex; justify-content: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+    .badge { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 7px 16px; border-radius: 24px; font-size: 0.82rem; }
 
-    .coming-soon {
-      max-width: 600px;
-      margin: 80px auto;
-      padding: 24px;
-      text-align: center;
-    }
-    .coming-soon .icon { font-size: 4rem; margin-bottom: 24px; }
-    .coming-soon h2 { font-size: 1.6rem; color: #333; margin-bottom: 12px; }
-    .coming-soon p { color: #777; font-size: 1rem; }
+    section { max-width: 900px; margin: 0 auto; padding: 44px 24px; }
+    section + section { border-top: 1px solid #e0e0e0; }
+    h2 { font-size: 1.5rem; font-weight: 700; color: #1a1a1a; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+    h2::before { content: ''; display: inline-block; width: 4px; height: 22px; background: #1a1a1a; border-radius: 2px; }
 
-    footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 22px; font-size: 0.82rem; margin-top: 80px; }
+    .about-text p { margin-bottom: 14px; color: var(--gray); }
+    .about-text strong { color: var(--dark); }
+
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+    .info-card { background: white; border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #1a1a1a; }
+    .info-card .label { font-size: 0.72rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+    .info-card .value { font-size: 0.95rem; font-weight: 600; margin-top: 4px; }
+
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+    .product-card { background: white; border-radius: 12px; padding: 18px 14px; text-align: center; font-weight: 600; font-size: 0.9rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.2s; }
+    .product-card:hover { transform: translateY(-3px); }
+    .product-card .icon { font-size: 1.7rem; display: block; margin-bottom: 8px; }
+
+    .values-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+    .val-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 12px; }
+    .val-card .check { background: #1a1a1a; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; }
+    .val-card p { font-weight: 600; font-size: 0.92rem; }
+
+    .contacts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+    .contact-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-decoration: none; color: var(--dark); display: flex; align-items: center; gap: 12px; transition: box-shadow 0.2s; }
+    .contact-card:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+    .contact-card .icon-wrap { background: #1a1a1a; color: white; border-radius: 10px; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; overflow: hidden; padding: 0; }
+    .contact-card .icon-wrap img { width: 42px; height: 42px; object-fit: cover; }
+    .contact-card .ct-label { font-size: 0.72rem; color: #999; }
+    .contact-card .ct-value { font-weight: 700; font-size: 0.92rem; }
+
+    footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 22px; font-size: 0.82rem; }
     footer strong { color: white; }
+
+    @media (max-width: 600px) { .hero h1 { font-size: 1.8rem; } h2 { font-size: 1.2rem; } }
   </style>
 </head>
 <body>
@@ -55,17 +79,101 @@
 <div class="hero">
   <img src="logo-skgroup.jpg" alt="SK Group" />
   <h1>SK Group</h1>
-  <p>Управляющая компания, объединяющая производство, дистрибуцию и партнёрскую сеть</p>
+  <div class="slogan">Авторитет в каждом моменте</div>
+  <div class="hero-badges">
+    <div class="badge">Производство мебели</div>
+    <div class="badge">Индивидуальный подход</div>
+    <div class="badge">Экологичные материалы</div>
+  </div>
 </div>
 
-<div class="coming-soon">
-  <div class="icon">🚧</div>
-  <h2>Раздел в разработке</h2>
-  <p>Информация о SK Group скоро появится здесь. Пожалуйста, загляните позже.</p>
-</div>
+<!-- О КОМПАНИИ -->
+<section>
+  <h2>О компании</h2>
+  <div class="about-text">
+    <p><strong>SK Group</strong> — команда вдохновлённых мастеров, которые превращают идеи в уютные интерьеры.</p>
+    <p>Компания специализируется на создании мебели с тщательно продуманными деталями, включая элегантные фасады и надёжные механизмы. Мы ориентированы на качество, экологичность материалов и индивидуальный подход к каждому клиенту.</p>
+  </div>
+</section>
+
+<!-- ИНФОРМАЦИЯ -->
+<section>
+  <h2>Основная информация</h2>
+  <div class="info-grid">
+    <div class="info-card"><div class="label">Название</div><div class="value">SK Group</div></div>
+    <div class="info-card"><div class="label">Сфера</div><div class="value">Производство мебели</div></div>
+    <div class="info-card"><div class="label">Адрес</div><div class="value">г. Туркестан, 161-й квартал, 2376</div></div>
+    <div class="info-card"><div class="label">Почта</div><div class="value">info.skgroup@mail.ru</div></div>
+  </div>
+</section>
+
+<!-- ПРОДУКЦИЯ -->
+<section>
+  <h2>Каталог продукции</h2>
+  <div class="products-grid">
+    <div class="product-card"><span class="icon">🛏️</span>Спальные гарнитуры</div>
+    <div class="product-card"><span class="icon">🚪</span>Шкафы</div>
+    <div class="product-card"><span class="icon">🍽️</span>Кухонные гарнитуры</div>
+    <div class="product-card"><span class="icon">🛋️</span>Мебель для гостиной</div>
+  </div>
+</section>
+
+<!-- ЦЕННОСТИ -->
+<section>
+  <h2>Наши ценности</h2>
+  <div class="values-list">
+    <div class="val-card"><div class="check">✓</div><p>Качество продукции</p></div>
+    <div class="val-card"><div class="check">✓</div><p>Экологичные материалы</p></div>
+    <div class="val-card"><div class="check">✓</div><p>Индивидуальный подход</p></div>
+    <div class="val-card"><div class="check">✓</div><p>Смелые дизайнерские идеи</p></div>
+  </div>
+</section>
+
+<!-- КОНТАКТЫ -->
+<section>
+  <h2>Контакты</h2>
+  <div class="contacts-grid">
+    <a class="contact-card" href="tel:+77067063030">
+      <div class="icon-wrap" style="background:#1a1a1a; padding:0 0 0 10px;">
+        <span style="font-size:1.2rem;">📞</span>
+      </div>
+      <div><div class="ct-label">Телефон</div><div class="ct-value">+7 706 706 30 30</div></div>
+    </a>
+    <a class="contact-card" href="https://wa.me/77067063030">
+      <div class="icon-wrap" style="background:#25D366;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" />
+      </div>
+      <div><div class="ct-label">WhatsApp</div><div class="ct-value">+7 706 706 30 30</div></div>
+    </a>
+    <a class="contact-card" href="https://instagram.com/skgroupkz">
+      <div class="icon-wrap" style="background:radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" />
+      </div>
+      <div><div class="ct-label">Instagram</div><div class="ct-value">@skgroupkz</div></div>
+    </a>
+    <a class="contact-card" href="https://t.me/skGrandM">
+      <div class="icon-wrap" style="background:#29A9EB; padding:0 0 0 10px;">
+        <span style="font-size:1.2rem;">✈️</span>
+      </div>
+      <div><div class="ct-label">Telegram</div><div class="ct-value">@skGrandM</div></div>
+    </a>
+    <div class="contact-card">
+      <div class="icon-wrap" style="background:#1a1a1a; padding:0 0 0 10px;">
+        <span style="font-size:1.2rem;">📍</span>
+      </div>
+      <div><div class="ct-label">Адрес</div><div class="ct-value">г. Туркестан, 161-й квартал, 2376</div></div>
+    </div>
+    <a class="contact-card" href="mailto:info.skgroup@mail.ru">
+      <div class="icon-wrap" style="background:#1a1a1a; padding:0 0 0 10px;">
+        <span style="font-size:1.2rem;">✉️</span>
+      </div>
+      <div><div class="ct-label">Email</div><div class="ct-value">info.skgroup@mail.ru</div></div>
+    </a>
+  </div>
+</section>
 
 <footer>
-  <strong>SK Group</strong> · Kazakhstan · <a href="index.html" style="color:#aaa">grandmiks.html</a>
+  <strong>SK Group</strong> · Туркестан, Казахстан · © 2026
 </footer>
 
 </body>
