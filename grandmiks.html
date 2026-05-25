@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grand MIKS — Мебельная фабрика</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --red: #d42b2b; --red-light: #ff4444; --dark: #1a1a1a; --gray: #555; --bg: #f9f9f9; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
+
+    .back-btn {
+      position: fixed;
+      top: 16px; left: 16px;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(212,43,43,0.4);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+      color: white;
+      padding: 60px 24px 50px;
+      text-align: center;
+    }
+    .hero img { height: 110px; width: 110px; object-fit: contain; border-radius: 50%; background: white; padding: 8px; margin-bottom: 24px; }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: 2px; color: #ff4444; text-transform: uppercase; }
+    .hero p { margin-top: 10px; font-size: 1rem; color: #ccc; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .hero-badges { display: flex; justify-content: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+    .badge { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 7px 16px; border-radius: 24px; font-size: 0.82rem; }
+    .badge span { color: #ff4444; font-weight: 700; }
+
+    section { max-width: 900px; margin: 0 auto; padding: 44px 24px; }
+    section + section { border-top: 1px solid #e0e0e0; }
+    h2 { font-size: 1.5rem; font-weight: 700; color: var(--red); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+    h2::before { content: ''; display: inline-block; width: 4px; height: 22px; background: var(--red); border-radius: 2px; }
+
+    .about-text p { margin-bottom: 14px; color: var(--gray); }
+    .about-text strong { color: var(--dark); }
+
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+    .info-card { background: white; border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid var(--red); }
+    .info-card .label { font-size: 0.72rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+    .info-card .value { font-size: 0.95rem; font-weight: 600; margin-top: 4px; }
+
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+    .product-card { background: white; border-radius: 12px; padding: 18px 14px; text-align: center; font-weight: 600; font-size: 0.9rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.2s; }
+    .product-card:hover { transform: translateY(-3px); }
+    .product-card .icon { font-size: 1.7rem; display: block; margin-bottom: 8px; }
+
+    .advantages-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+    .adv-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 12px; }
+    .adv-card .check { background: var(--red); color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; }
+    .adv-card p { font-weight: 600; font-size: 0.92rem; }
+
+    .partners-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .partner-tag { background: white; border: 2px solid var(--red); color: var(--red); border-radius: 8px; padding: 10px 20px; font-weight: 700; font-size: 0.95rem; }
+
+    .countries-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .country { background: white; border-radius: 20px; padding: 8px 16px; font-size: 0.88rem; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+
+    .contacts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+    .contact-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-decoration: none; color: var(--dark); display: flex; align-items: center; gap: 12px; transition: box-shadow 0.2s; }
+    .contact-card:hover { box-shadow: 0 6px 16px rgba(212,43,43,0.15); }
+    .contact-card .icon-wrap { background: var(--red); color: white; border-radius: 10px; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .contact-card .ct-label { font-size: 0.72rem; color: #999; }
+    .contact-card .ct-value { font-weight: 700; font-size: 0.92rem; }
+
+    footer { background: var(--dark); color: #aaa; text-align: center; padding: 22px; font-size: 0.82rem; }
+    footer strong { color: white; }
+
+    @media (max-width: 600px) { .hero h1 { font-size: 1.8rem; } h2 { font-size: 1.2rem; } }
+  </style>
+</head>
+<body>
+
+<a class="back-btn" href="index.html">← Назад</a>
+
+<div class="hero">
+  <img src="logo-grandmiks.jpg" alt="Grand MIKS" />
+  <h1>Grand MIKS</h1>
+  <p>Одна из крупнейших мебельных фабрик Казахстана — собственное производство полного цикла</p>
+  <div class="hero-badges">
+    <div class="badge"><span>27+</span> лет на рынке</div>
+    <div class="badge"><span>Гарантия</span> 5 лет</div>
+    <div class="badge"><span>6</span> стран экспорта</div>
+    <div class="badge">Опт и розница</div>
+  </div>
+</div>
+
+<section>
+  <h2>О компании</h2>
+  <div class="about-text">
+    <p><strong>Grand MIKS</strong> — одна из крупнейших мебельных фабрик Казахстана с собственным производством полного цикла. Компания начала свой путь с небольшого мебельного цеха и за более чем 27 лет выросла в крупный бренд, работающий по современным международным стандартам производства мебели.</p>
+    <p><strong>SK Group</strong> — направление компании, объединяющее развитие мебельного бизнеса, производство, дистрибуцию и партнёрскую сеть.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Основная информация</h2>
+  <div class="info-grid">
+    <div class="info-card"><div class="label">Название</div><div class="value">Grand MIKS</div></div>
+    <div class="info-card"><div class="label">Сфера</div><div class="value">Корпусная мебель</div></div>
+    <div class="info-card"><div class="label">Страна</div><div class="value">Казахстан</div></div>
+    <div class="info-card"><div class="label">Опыт</div><div class="value">25–27 лет на рынке</div></div>
+    <div class="info-card"><div class="label">Формат</div><div class="value">Опт и розница</div></div>
+    <div class="info-card"><div class="label">Доставка</div><div class="value">По всему Казахстану</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Что мы производим</h2>
+  <div class="products-grid">
+    <div class="product-card"><span class="icon">🍽️</span>Кухни</div>
+    <div class="product-card"><span class="icon">🛏️</span>Спальные гарнитуры</div>
+    <div class="product-card"><span class="icon">🛏️</span>Кровати</div>
+    <div class="product-card"><span class="icon">🚪</span>Шкафы-купе</div>
+    <div class="product-card"><span class="icon">🏠</span>Прихожие</div>
+    <div class="product-card"><span class="icon">🛋️</span>Гостиные</div>
+    <div class="product-card"><span class="icon">🧸</span>Детская мебель</div>
+    <div class="product-card"><span class="icon">📦</span>Корпусная мебель</div>
+  </div>
+</section>
+
+<section>
+  <h2>Преимущества</h2>
+  <div class="advantages-list">
+    <div class="adv-card"><div class="check">✓</div><p>Собственное производство</p></div>
+    <div class="adv-card"><div class="check">✓</div><p>Премиальные материалы</p></div>
+    <div class="adv-card"><div class="check">✓</div><p>Гарантия 5 лет</p></div>
+    <div class="adv-card"><div class="check">✓</div><p>Масштабируемое производство</p></div>
+    <div class="adv-card"><div class="check">✓</div><p>Экспорт в 6 стран</p></div>
+    <div class="adv-card"><div class="check">✓</div><p>Доставка по всему Казахстану</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Партнёры и материалы</h2>
+  <div class="partners-row">
+    <div class="partner-tag">Blum</div>
+    <div class="partner-tag">Häfele</div>
+    <div class="partner-tag">Lamarty</div>
+    <div class="partner-tag">Freestyle</div>
+  </div>
+</section>
+
+<section>
+  <h2>Страны экспорта</h2>
+  <div class="countries-row">
+    <div class="country">🇰🇿 Казахстан</div>
+    <div class="country">🇰🇬 Кыргызстан</div>
+    <div class="country">🇺🇿 Узбекистан</div>
+    <div class="country">🇷🇺 Россия</div>
+    <div class="country">🇦🇲 Армения</div>
+    <div class="country">🇬🇪 Грузия</div>
+    <div class="country">🇹🇯 Таджикистан</div>
+  </div>
+</section>
+
+<section>
+  <h2>Контакты</h2>
+  <div class="contacts-grid">
+    <a class="contact-card" href="https://wa.me/77077243625">
+      <div class="icon-wrap">💬</div>
+      <div><div class="ct-label">WhatsApp</div><div class="ct-value">+7 707 724 3625</div></div>
+    </a>
+    <a class="contact-card" href="https://instagram.com/grandmiks.kz">
+      <div class="icon-wrap">📷</div>
+      <div><div class="ct-label">Instagram</div><div class="ct-value">@grandmiks.kz</div></div>
+    </a>
+    <a class="contact-card" href="https://kaspi.kz">
+      <div class="icon-wrap">🛒</div>
+      <div><div class="ct-label">Заказать</div><div class="ct-value">Kaspi.kz</div></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <strong>Grand MIKS</strong> — часть <strong>SK Group</strong> · Казахстан · Производство мебели с 1997 года
+</footer>
+
+</body>
+</html>
